@@ -1,0 +1,18 @@
+SHOW databases;
+USE sakila;
+SHOW TABLES;
+SELECT * FROM actor WHERE last_name LIKE 'ALLEN%';
+SELECT * FROM actor WHERE last_name LIKE 'DAVIS%' AND first_name LIKE 'SUSAN%';
+SELECT * FROM actor WHERE last_name LIKE 'DAVIS%' OR last_name LIKE 'ALLEN';
+SELECT * FROM category WHERE name NOT LIKE 'a%' OR name NOT LIKE 'A%';
+SELECT first_name, last_name, title FROM actor JOIN FILM;
+SELECT title,name,release_year FROM film JOIN category;
+SELECT SUM(p.amount) AS total_spent FROM payment p JOIN customer c ON p.customer_id = c.customer_id WHERE c.first_name = 'JOHNNY' AND c.last_name = 'TURPIN';
+SELECT film.title, film.release_year, CONCAT(actor.first_name, ' ', actor.last_name) AS actor_name, category.name AS category_name
+FROM film 
+JOIN film_actor ON film.film_id = film_actor.film_id
+JOIN actor ON film_actor.actor_id = actor.actor_id
+JOIN film_category ON film.film_id = film_category.film_id
+JOIN category ON film_category.category_id = category.category_id
+WHERE actor.first_name = 'Sean';
+
